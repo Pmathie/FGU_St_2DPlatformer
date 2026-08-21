@@ -34,4 +34,18 @@ public class MovingPlatform : MonoBehaviour
         }
 
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) //Hvis vores platform kolliderer med et gameObject med tagget "Player"
+        {
+            collision.transform.parent = transform; //Vi sætter MovingPlatform til at være vores spillers Parent
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")) //Hvis vores platform kolliderer med et gameObject med tagget "Player"
+        {
+            collision.transform.parent = null; //Vi fjerner MovingPlatform som Parent til vores spiller
+        }
+    }
 }

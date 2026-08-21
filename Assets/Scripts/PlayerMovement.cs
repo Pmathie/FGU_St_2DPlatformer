@@ -4,9 +4,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 8f;
+    public float airSpeed;
+    public float xWallJumpForce;
+    public float yWallJumpForce;
     private Rigidbody2D rb;
     private float horizontalInput;
-    private bool isGrounded = true;
+    private GroundCollisionCheck groundCol;
+    private WallCollisionCheck wallCol;
     private Vector3 startPos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -14,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     {
         startPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
+        groundCol = GetComponentInChildren<GroundCollisionCheck>();
+        wallCol = GetComponentInChildren<WallCollisionCheck>();
     }
 
     // Update is called once per frame
@@ -21,9 +27,13 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && groundCol.isGrounded)
         {
             Jump();
+        }
+        else if(Input.GetKeyDown(KeyCode.Space) && wallCol.onWall)
+        {
+            WallJump();
         }
     }
     private void FixedUpdate()
@@ -33,12 +43,26 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+        if (groundCol.isGrounded)
+        {
+            rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+        }
+        else
+        {
+            rb.AddForce(new Vector2(horizontalInput * airSpeed, 0));
+            rb.linearVelocity = new Vector2(Mathf.Clamp(rb.linearVelocity.x, -moveSpeed, moveSpeed), rb.linearVelocity.y); 
+        }
+       
     }
     void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        isGrounded = false;
+    }
+    void WallJump()
+    {
+        Debug.Log("Wall jump");
+        int jumpDirection = -wallCol.wallDirection; //Vores jump direction skal være det modsatte af væggens direction
+        rb.linearVelocity = new Vector2(jumpDirection*xWallJumpForce, yWallJumpForce);
     }
     public void Respawn()
     {
@@ -49,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            
         }
            
     }
