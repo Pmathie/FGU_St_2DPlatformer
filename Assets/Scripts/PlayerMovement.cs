@@ -4,14 +4,15 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 8f;
-
     private Rigidbody2D rb;
     private float horizontalInput;
     private bool isGrounded = true;
+    private Vector3 startPos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        startPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -38,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         isGrounded = false;
+    }
+    public void Respawn()
+    {
+        transform.position = startPos; //Vi transporterer vores player tilbage til start positionen
+        rb.linearVelocity = Vector2.zero; //Vi nulstiller momementum på playeren 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
