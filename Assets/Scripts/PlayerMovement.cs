@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private GroundCollisionCheck groundCol;
     private WallCollisionCheck wallCol;
     private Vector3 startPos;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip jumpSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,16 +59,17 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
+        AudioManager.Instance.PlaySound(jumpSound);
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
     void WallJump()
     {
-        Debug.Log("Wall jump");
         int jumpDirection = -wallCol.wallDirection; //Vores jump direction skal være det modsatte af væggens direction
         rb.linearVelocity = new Vector2(jumpDirection*xWallJumpForce, yWallJumpForce);
     }
     public void Respawn()
     {
+        AudioManager.Instance.PlaySound(deathSound);
         transform.position = startPos; //Vi transporterer vores player tilbage til start positionen
         rb.linearVelocity = Vector2.zero; //Vi nulstiller momementum på playeren 
     }
