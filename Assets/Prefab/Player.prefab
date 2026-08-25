@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5142393530136300521}
   - component: {fileID: 2627500710880003265}
   - component: {fileID: 2015987156592409846}
+  - component: {fileID: 2519175114795415061}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -180,6 +181,21 @@ MonoBehaviour:
   yWallJumpForce: 8
   deathSound: {fileID: 8300000, guid: b6fa395189f31ba45ab323879120ae8a, type: 3}
   jumpSound: {fileID: 0}
+--- !u!114 &2519175114795415061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943871407847915185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f466298223b7af42800afdd1df89bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinCollector
+  coinCount: 0
+  coinSound: {fileID: 8300000, guid: 0384778a90a646f46ab89d48a1c0b8d2, type: 3}
+  coinText: {fileID: 0}
 --- !u!1 &6240797800664801878
 GameObject:
   m_ObjectHideFlags: 0
