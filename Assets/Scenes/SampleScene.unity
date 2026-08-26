@@ -1771,26 +1771,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581027797}
   m_CullTransparentMesh: 1
---- !u!1 &1800798209 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1943871407847915185, guid: 2e16ca9ac0827864eaf33db6e8054a93, type: 3}
-  m_PrefabInstance: {fileID: 4601811057769477030}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1800798215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800798209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f466298223b7af42800afdd1df89bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinCollector
-  coinCount: 0
-  coinSound: {fileID: 8300000, guid: 0384778a90a646f46ab89d48a1c0b8d2, type: 3}
-  coinText: {fileID: 1966885260}
 --- !u!1 &1848859984
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,10 +2387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5142393530136300521, guid: 2e16ca9ac0827864eaf33db6e8054a93, type: 3}
-      propertyPath: m_GravityScale
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 2519175114795415061, guid: 2e16ca9ac0827864eaf33db6e8054a93, type: 3}
+      propertyPath: coinText
+      value: 
+      objectReference: {fileID: 1966885260}
     - target: {fileID: 5260886711713491794, guid: 2e16ca9ac0827864eaf33db6e8054a93, type: 3}
       propertyPath: m_LocalPosition.x
       value: -107.03
@@ -2454,10 +2434,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1943871407847915185, guid: 2e16ca9ac0827864eaf33db6e8054a93, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1800798215}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e16ca9ac0827864eaf33db6e8054a93, type: 3}
 --- !u!1001 &7084448500015976382
 PrefabInstance:
